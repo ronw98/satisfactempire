@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:satisfactempire/app_cubit.dart';
@@ -17,14 +18,23 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final appBar = AppBar(
+      title: Text('Satisfactory'),
+      actions: [
+        IconButton(
+          onPressed: () {
+            FirebaseUIAuth.signOut(context: context);
+          },
+          icon: Icon(Icons.logout),
+        ),
+      ],
+    );
     return BlocBuilder<AppCubit, AppCubitState>(
       builder: (context, state) {
         switch (state) {
           case AppLoading():
             return Scaffold(
-              appBar: AppBar(
-                title: Text('Satisfactory'),
-              ),
+              appBar: appBar,
               body: Center(
                 child: CircularProgressIndicator(),
               ),
@@ -33,9 +43,7 @@ class _HomePageState extends State<HomePage> {
             final selectedPlanet = empire.planets
                 .firstWhereOrNull((p) => p.id == selectedPlanetId);
             return Scaffold(
-              appBar: AppBar(
-                title: Text('Satisfactory'),
-              ),
+              appBar: appBar,
               drawer: AppDrawer(
                   onPlanetSelected: (planet) {
                     setState(() {
@@ -51,13 +59,12 @@ class _HomePageState extends State<HomePage> {
             );
           case AppError(error: final e):
             return Scaffold(
-              appBar: AppBar(
-                title: Text('Satisfactory'),
-              ),
+              appBar: appBar,
               body: Placeholder(
-                  child: Center(
-                child: Text(e),
-              )),
+                child: Center(
+                  child: Text(e),
+                ),
+              ),
             );
           case AppInitial():
             return const SizedBox.shrink();
