@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "838634770317",
+    "project_id": "satisfactempire",
+    "storage_bucket": "satisfactempire.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:838634770317:android:a0120cc2ce5a4d1f32f7c4",
+        "android_client_info": {
+          "package_name": "dev.reblochor.satisfactempire"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "838634770317-po69tfj6jv7n521uhhclhnvs97goabcm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVfM7dHF7q5eFjdy5e9dO1SzYH9bP4VS8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "838634770317-po69tfj6jv7n521uhhclhnvs97goabcm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
