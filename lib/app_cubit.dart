@@ -41,7 +41,9 @@ class AppCubit extends Cubit<AppCubitState> {
       },
     ).listen(
       (planets) => emit(AppCubitState.loaded(empire: Empire(planets: planets))),
-      onError: (e) => emit(AppCubitState.error(error: e)),
+      onError: (e) {
+        emit(AppCubitState.error(error: e));
+      },
       cancelOnError: false,
     );
   }

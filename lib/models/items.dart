@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:satisfactempire/assets.dart';
 
 enum SatisfactoryItem {
+  planet('Planète'),
   aucun('Energie'),
   acideNitriqueConditionne('Acide nitrique conditionné'),
   acideSulfurique('Acide sulfurique'),
@@ -61,6 +62,14 @@ enum SatisfactoryItem {
   moteur('Moteur'),
   moteurModulaire('Moteur modulaire'),
   moteurTurbo('Moteur turbo'),
+  munitionDeFusil('Munition de fusil'),
+  munitionDeFusilATeteChercheuse('Munition de fusil à tête chercheuse'),
+  munitionDeFusilTurbo('Munition de fusil turbo'),
+  nobelisque('Nobélisque'),
+  nobelisqueAGaz('Nobélisque à gaz'),
+  nobelisqueAImpulsion('Nobélisque à impulsion'),
+  nobelisqueAFragmentation('Nobélisque à fragmentation'),
+  nobelisqueNucleaire('Nobélisque nucléaire'),
   ordinateur('Ordinateur'),
   ordinateurQuantique('Ordinateur quantique'),
   oscillateurDeSuperposition('Oscillateur de superposition'),
@@ -113,6 +122,7 @@ enum SatisfactoryItem {
 
   AssetImage get image {
     return switch (this) {
+      SatisfactoryItem.planet => Images.planet,
       SatisfactoryItem.aucun => Images.powerLine,
       SatisfactoryItem.acideNitriqueConditionne => Images.packagedNitricAcid,
       SatisfactoryItem.acideSulfurique => Images.sulfuricAcid,
@@ -228,6 +238,14 @@ enum SatisfactoryItem {
       SatisfactoryItem.uranium => Images.uranium,
       SatisfactoryItem.uraniumNonFissile => Images.nonFissileUranium,
       SatisfactoryItem.vis => Images.screw,
+      SatisfactoryItem.munitionDeFusil => Images.rifleAmmo,
+      SatisfactoryItem.munitionDeFusilATeteChercheuse => Images.homingRifleAmmo,
+      SatisfactoryItem.munitionDeFusilTurbo => Images.turboRifleAmmo,
+      SatisfactoryItem.nobelisque => Images.nobelisk,
+      SatisfactoryItem.nobelisqueAGaz => Images.gasNobelisk,
+      SatisfactoryItem.nobelisqueAImpulsion => Images.pulseNobelisk,
+      SatisfactoryItem.nobelisqueAFragmentation => Images.clusterNobelisk,
+      SatisfactoryItem.nobelisqueNucleaire => Images.nukeNobelisk,
     };
   }
 }

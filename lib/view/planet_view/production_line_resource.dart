@@ -20,7 +20,7 @@ class ProductionLineResources extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text('Entrées'),
+        Text(title),
         Gap(16),
         for (final (item, value) in resources.toIterable())
           Row(

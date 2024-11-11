@@ -47,7 +47,11 @@ class _ProductionOverviewTableState extends State<ProductionOverviewTable> {
     final sortedProduction = widget.production
         .toIterable()
         // Filter Rien
-        .where(((entry) => entry.$1 != SatisfactoryItem.aucun))
+        .where(
+          (entry) =>
+              entry.$1 != SatisfactoryItem.aucun &&
+              entry.$1 != SatisfactoryItem.planet,
+        )
         // Search
         .where(
       (entry) {
@@ -63,11 +67,11 @@ class _ProductionOverviewTableState extends State<ProductionOverviewTable> {
           }
           // Sort by production
           if (sortingColumn == 1) {
-            return entryA.$2.consumption.compareTo(entryB.$2.consumption) *
+            return entryA.$2.production.compareTo(entryB.$2.production) *
                 (sortAscending ? 1 : -1);
           }
           if (sortingColumn == 2) {
-            return entryA.$2.production.compareTo(entryB.$2.production) *
+            return entryA.$2.consumption.compareTo(entryB.$2.consumption) *
                 (sortAscending ? 1 : -1);
           }
           if (sortingColumn == 3) {
@@ -107,13 +111,13 @@ class _ProductionOverviewTableState extends State<ProductionOverviewTable> {
                     onSort: _onSort,
                   ),
                   DataColumn(
-                    label: Expanded(child: Text('Consommation')),
-                    onSort: _onSort,
-                  ),
-                  DataColumn(
                     label: Expanded(
                       child: Text('Production'),
                     ),
+                    onSort: _onSort,
+                  ),
+                  DataColumn(
+                    label: Expanded(child: Text('Consommation')),
                     onSort: _onSort,
                   ),
                   DataColumn(
@@ -143,12 +147,12 @@ class _ProductionOverviewTableState extends State<ProductionOverviewTable> {
                         ),
                         DataCell(
                           Text(
-                            '${summary.consumption.roundToPrecision(2)}',
+                            '${summary.production.roundToPrecision(2)}',
                           ),
                         ),
                         DataCell(
                           Text(
-                            '${summary.production.roundToPrecision(2)}',
+                            '${summary.consumption.roundToPrecision(2)}',
                           ),
                         ),
                         DataCell(

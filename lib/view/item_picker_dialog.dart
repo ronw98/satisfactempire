@@ -4,7 +4,14 @@ import 'package:satisfactempire/extensions.dart';
 import 'package:satisfactempire/models/items.dart';
 
 class ItemPickerDialog extends StatefulWidget {
-  const ItemPickerDialog({super.key});
+  const ItemPickerDialog({
+    super.key,
+    this.showPlanet = true,
+    this.showEnergy = true,
+  });
+
+  final bool showPlanet;
+  final bool showEnergy;
 
   @override
   State<ItemPickerDialog> createState() => _ItemPickerDialogState();
@@ -61,6 +68,16 @@ class _ItemPickerDialogState extends State<ItemPickerDialog> {
                           (item) => item.name.sanitize().contains(
                                 _search.text.sanitize(),
                               ),
+                        )
+                        .where(
+                          (item) =>
+                              item != SatisfactoryItem.planet ||
+                              widget.showPlanet,
+                        )
+                        .where(
+                          (item) =>
+                              item != SatisfactoryItem.aucun ||
+                              widget.showEnergy,
                         )
                         .map(
                           (item) => InkWell(

@@ -47,6 +47,7 @@ class PlanetProductionLinesTab extends StatelessWidget {
             icon: Icon(Icons.add),
           ),
         ),
+        Gap(4),
       ],
     );
   }

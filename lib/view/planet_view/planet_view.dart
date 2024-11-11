@@ -225,8 +225,12 @@ class _ProductionLineEditionDialogState
                               onPressed: () async {
                                 final newItem =
                                     await showDialog<SatisfactoryItem>(
-                                        context: context,
-                                        builder: (_) => ItemPickerDialog());
+                                  context: context,
+                                  builder: (_) => ItemPickerDialog(
+                                    showEnergy: false,
+                                    showPlanet: false,
+                                  ),
+                                );
                                 if (newItem != null && mounted) {
                                   setState(() {
                                     image = newItem;
@@ -312,7 +316,8 @@ class _ProductionLineEditionDialogState
                                           final newItem = await showDialog<
                                               SatisfactoryItem>(
                                             context: context,
-                                            builder: (_) => ItemPickerDialog(),
+                                            builder: (_) => ItemPickerDialog(
+                                                showEnergy: false),
                                           );
                                           if (newItem == null || !mounted) {
                                             return;
@@ -408,7 +413,9 @@ class _ProductionLineEditionDialogState
                                           final newItem = await showDialog<
                                               SatisfactoryItem>(
                                             context: context,
-                                            builder: (_) => ItemPickerDialog(),
+                                            builder: (_) => ItemPickerDialog(
+                                              showPlanet: false,
+                                            ),
                                           );
                                           if (newItem == null || !mounted) {
                                             return;
