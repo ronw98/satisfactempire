@@ -5,6 +5,7 @@ enum SatisfactoryItem {
   planet('Planète'),
   aucun('Energie'),
   acideNitriqueConditionne('Acide nitrique conditionné'),
+  acideNitrique('Acide nitrique'),
   acideSulfurique('Acide sulfurique'),
   acideSulfuriqueConditionne('Acide sulfurique conditionné'),
   azote('Azote'),
@@ -125,6 +126,7 @@ enum SatisfactoryItem {
       SatisfactoryItem.planet => Images.planet,
       SatisfactoryItem.aucun => Images.powerLine,
       SatisfactoryItem.acideNitriqueConditionne => Images.packagedNitricAcid,
+      SatisfactoryItem.acideNitrique => Images.nitricAcid,
       SatisfactoryItem.acideSulfurique => Images.sulfuricAcid,
       SatisfactoryItem.acideSulfuriqueConditionne =>
         Images.packagedSulfuricAcid,
