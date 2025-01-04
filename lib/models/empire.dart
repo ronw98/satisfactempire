@@ -3,7 +3,6 @@ import 'package:satisfactempire/extensions.dart';
 import 'package:satisfactempire/models/items.dart';
 
 part 'empire.freezed.dart';
-
 part 'empire.g.dart';
 
 @freezed
@@ -45,6 +44,30 @@ class Empire with _$Empire {
       }
     }
     return totalSummary;
+  }
+
+  Map<String, List<ProductionLine>> itemConsumedIn(SatisfactoryItem item) {
+    final result = <String, List<ProductionLine>>{};
+    for (final planet in planets) {
+      for (final productionLine in planet.productions) {
+        if (productionLine.baseConsumption.containsKey(item)) {
+          result.update(planet.id, (value) => value..add(productionLine), ifAbsent: () => [productionLine]);
+        }
+      }
+    }
+    return result;
+  }
+
+  Map<String, List<ProductionLine>> itemProducedIn(SatisfactoryItem item) {
+    final result = <String, List<ProductionLine>>{};
+    for (final planet in planets) {
+      for (final productionLine in planet.productions) {
+        if (productionLine.baseProduction.containsKey(item)) {
+          result.update(planet.id, (value) => value..add(productionLine), ifAbsent: () => [productionLine]);
+        }
+      }
+    }
+    return result;
   }
 }
 

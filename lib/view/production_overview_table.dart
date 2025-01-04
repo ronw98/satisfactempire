@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:satisfactempire/app_cubit.dart';
 import 'package:satisfactempire/extensions.dart';
 import 'package:satisfactempire/models/empire.dart';
 import 'package:satisfactempire/models/items.dart';
 import 'package:satisfactempire/view/item_image.dart';
+import 'package:satisfactempire/view/item_summary/item_summary_view.dart';
 
 class ProductionOverviewTable extends StatefulWidget {
   const ProductionOverviewTable({super.key, required this.production});
@@ -133,15 +136,36 @@ class _ProductionOverviewTableState extends State<ProductionOverviewTable> {
                     return DataRow(
                       cells: [
                         DataCell(
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                ItemImage(item: item),
-                                Gap(8),
-                                Expanded(child: Text(item.name)),
-                              ],
+                          InkWell(
+                            onTap: switch (context.read<AppCubit>().state) {
+                              AppLoaded(empire: final empire) => () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (_) {
+                                      return Dialog(
+                                        child: Padding(
+                                          padding: EdgeInsets.all(16),
+                                          child: ItemSummaryView(
+                                            item: item,
+                                            empire: empire,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                              _ => null,
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  ItemImage(item: item),
+                                  Gap(8),
+                                  Expanded(child: Text(item.name)),
+                                ],
+                              ),
                             ),
                           ),
                         ),
