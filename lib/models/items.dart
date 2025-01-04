@@ -49,6 +49,8 @@ enum SatisfactoryItem {
   diamants('Diamants'),
   eau('Eau'),
   eauConditionnee('Eau conditionnée'),
+  emeReanimee('EME réanimée'),
+  fluctuateurDEme('Fluctuateur d\'EME'),
   ficsonium('Ficsonium'),
   filElectrique('Fil électrique'),
   filactif('Filactif'),
@@ -276,6 +278,8 @@ enum SatisfactoryItem {
       SatisfactoryItem.serveurDExpansionDIA => Images.aIExpansionServer,
       SatisfactoryItem.sculptriceBiochimique => Images.biochemicalSculptor,
       SatisfactoryItem.trigonEnFicsite => Images.ficsiteTrigon,
+      SatisfactoryItem.emeReanimee => Images.reanimatedSAM,
+      SatisfactoryItem.fluctuateurDEme => Images.sAMFluctuator,
     };
   }
 }
