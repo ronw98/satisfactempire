@@ -93,7 +93,7 @@ class Planet with _$Planet {
   /// planetary output.
   Map<SatisfactoryItem, double> get planetProduction {
     Map<SatisfactoryItem, double> totalProduction = {};
-    for (final productionLine in productions) {
+    for (final productionLine in productions.where((line) => line.exists)) {
       // Add all production of planet
       for (final (item, rate) in productionLine.baseProduction.toIterable()) {
         totalProduction.update(
@@ -117,7 +117,7 @@ class Planet with _$Planet {
 
   Map<SatisfactoryItem, ResourceSummary> get planetSummary {
     final Map<SatisfactoryItem, ResourceSummary> totalSummary = {};
-    for (final productionLine in productions) {
+    for (final productionLine in productions.where((line) => line.exists)) {
       // Add all production of planet
       for (final (item, rate) in productionLine.baseProduction.toIterable()) {
         totalSummary.update(
@@ -165,6 +165,9 @@ class ProductionLine with _$ProductionLine {
     /// Number of machines (.5 means a 50% machine)
     required double quantity,
     required SatisfactoryItem image,
+
+    @Default(true)
+    bool exists,
   }) = _ProductionLine;
 
   factory ProductionLine.fromJson(Map<String, dynamic> json) =>

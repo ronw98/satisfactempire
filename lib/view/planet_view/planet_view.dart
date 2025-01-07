@@ -87,6 +87,16 @@ class PlanetProductionCard extends StatelessWidget {
             'x ${line.quantity}',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
+          if (!line.exists) ...[
+            Gap(16),
+            Text(
+              'Off',
+              style: Theme.of(context)
+                  .textTheme
+                  .labelMedium
+                  ?.copyWith(color: Theme.of(context).colorScheme.error),
+            ),
+          ],
           Spacer(),
           IconButton(
             onPressed: () async {
@@ -171,6 +181,8 @@ class _ProductionLineEditionDialogState
   late TextEditingController _name;
   late TextEditingController quantity;
   late SatisfactoryItem? image;
+
+  late bool exists;
   late String id;
 
   @override
@@ -187,6 +199,7 @@ class _ProductionLineEditionDialogState
         setState(() {});
       });
     image = widget.line?.image;
+    exists = widget.line?.exists ?? true;
     id = widget.line?.id ?? Uuid().v4();
   }
 
@@ -260,6 +273,24 @@ class _ProductionLineEditionDialogState
                       label: Text('Nom de la ligne'),
                     ),
                   ),
+                ),
+                Gap(16),
+                Text(
+                  'Off',
+                  style: Theme.of(context).textTheme.labelSmall,
+                ),
+                Gap(4),
+                Switch(
+                    value: exists,
+                    onChanged: (value) {
+                      setState(() {
+                        exists = value;
+                      });
+                    }),
+                Gap(4),
+                Text(
+                  'On',
+                  style: Theme.of(context).textTheme.labelSmall,
                 ),
               ],
             ),
@@ -509,6 +540,7 @@ class _ProductionLineEditionDialogState
                               baseProduction: baseProduction,
                               quantity: double.parse(quantity.text),
                               image: image!,
+                              exists: exists,
                             );
                             Navigator.pop(context, newProductionLine);
                           }
