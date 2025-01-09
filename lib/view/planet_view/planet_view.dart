@@ -74,6 +74,7 @@ class PlanetProductionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CollapseCard(
+      borderColor: line.exists ? null : Theme.of(context).colorScheme.error,
       title: Row(
         children: [
           ItemImage(item: line.image),

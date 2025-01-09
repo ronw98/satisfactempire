@@ -4,9 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 class CollapseCard extends StatefulWidget {
-  const CollapseCard({super.key, required this.title, required this.body});
+  const CollapseCard({
+    super.key,
+    required this.title,
+    required this.body,
+    this.borderColor,
+  });
 
   final Widget title;
+  final Color? borderColor;
   final Widget body;
 
   @override
@@ -18,14 +24,16 @@ class _CollapseCardState extends State<CollapseCard>
   late final AnimationController _animationController;
 
   bool _expanded = false;
+
   set expanded(bool value) {
     _expanded = value;
-    if(value) {
+    if (value) {
       _animationController.forward();
     } else {
       _animationController.reverse();
     }
   }
+
   @override
   void initState() {
     super.initState();
@@ -52,6 +60,11 @@ class _CollapseCardState extends State<CollapseCard>
   @override
   Widget build(BuildContext context) {
     return Card(
+      shape: widget.borderColor == null
+          ? null
+          : RoundedRectangleBorder(
+              side: BorderSide(color: widget.borderColor!),
+            ),
       elevation: 2,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
